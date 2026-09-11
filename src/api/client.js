@@ -1,0 +1,17 @@
+import axios from 'axios'
+
+const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  headers: { 'Content-Type': 'application/json' },
+})
+
+export const appointmentApi = {
+  create: (payload) => apiClient.post('/appointments', payload),
+  list: () => apiClient.get('/appointments'),
+}
+
+export const contactApi = {
+  send: (payload) => apiClient.post('/contact', payload),
+}
+
+export default apiClient
